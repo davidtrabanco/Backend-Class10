@@ -1,0 +1,33 @@
+html
+    head
+        title='Pug'
+
+    style.
+        table, th, td{
+            border:1px solid black;
+        }
+
+    body 
+        h1='Pug'
+
+        button(type='button')
+            a(href="/")="Ingresar Nuevo Producto"
+        p 
+
+        h2='Lista de Productos'
+
+        table(style='width:100%; text-align:center; vertical-align:middle;')
+        
+            tr
+                th='ID'
+                th='Producto'
+                th='Precio'
+                th='Imágen'
+
+            each product in productsList
+                tr
+                    td=product.id
+                    td=product.title
+                    td='$' + product.price
+                    td
+                        img(src=product.thumbnail)
