@@ -5,14 +5,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 import handlebars from "express-handlebars";
 import express from "express";
-import {productsRoute} from "./routes/productos.js";
+import {productsRoute} from "./src/routes/productos.js";
 
 //Configuro el servidor:
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('../public'));
+app.use(express.static('./public'));
 
 //COnfiguro el engine template en base al parámetro enviado:
 app.use('/productos/:engine',(req,res,next)=>{
@@ -29,8 +29,8 @@ app.use('/productos/:engine',(req,res,next)=>{
                 {
                 extname: ".hbs",
                 defaultLayout: 'index.hbs',
-                layoutsDir: __dirname + '/views/layouts',
-                partialsDir: __dirname + '/views/partials/',
+                layoutsDir: __dirname + '/src/views/layouts',
+                partialsDir: __dirname + '/src/views/partials/',
                 }
             ))
             app.set('view engine', 'hbs')
@@ -54,7 +54,7 @@ app.use('/productos/:engine',(req,res,next)=>{
 //establezco los routers:
 app.use('/productos', productsRoute);
 
-app.set('views', './views');
+app.set('views', './src/views');
 
 //Inicio el servidor:
 const server = app.listen(8080,()=>console.log(`server up on port ${server.address().port}`));
